@@ -91,6 +91,11 @@
           type="password"
           v-model.trim="password"
         />
+        <p>{{ $t("prompts.optionalPath") }}</p>
+        <input
+            v-model.trim="path"
+            class="input input--block"
+        />
       </div>
 
       <div class="card-action">
@@ -131,6 +136,7 @@ export default {
       links: [],
       clip: null,
       password: "",
+      path: "",
       listing: true,
     };
   },
@@ -180,9 +186,9 @@ export default {
         let res = null;
 
         if (isPermanent) {
-          res = await api.create(this.url, this.password);
+          res = await api.create(this.url, this.password, this.path);
         } else {
-          res = await api.create(this.url, this.password, this.time, this.unit);
+          res = await api.create(this.url, this.password, this.path, this.time, this.unit);
         }
 
         this.links.push(res);
@@ -191,6 +197,7 @@ export default {
         this.time = "";
         this.unit = "hours";
         this.password = "";
+        this.path = "";
 
         this.listing = true;
       } catch (e) {

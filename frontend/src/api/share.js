@@ -19,15 +19,15 @@ export async function remove(hash) {
   }
 }
 
-export async function create(url, password = "", expires = "", unit = "hours") {
+export async function create(url, password = "", path="", expires = "", unit = "hours") {
   url = removePrefix(url);
   url = `/api/share${url}`;
   if (expires !== "") {
     url += `?expires=${expires}&unit=${unit}`;
   }
   let body = "{}";
-  if (password != "" || expires !== "" || unit !== "hours") {
-    body = JSON.stringify({ password: password, expires: expires, unit: unit });
+  if (password != "" || expires !== "" || unit !== "hours" || path !== "") {
+    body = JSON.stringify({ password: password, expires: expires, unit: unit ,path: path});
   }
   return fetchJSON(url, {
     method: "POST",

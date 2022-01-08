@@ -4,6 +4,7 @@ type CreateBody struct {
 	Password string `json:"password"`
 	Expires  string `json:"expires"`
 	Unit     string `json:"unit"`
+	Path     string `json:"path"`
 }
 
 // Link is the information needed to build a shareable link.
