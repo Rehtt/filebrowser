@@ -9,7 +9,7 @@ COPY --from=nodejs /filebrowser /filebrowser
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN apk --update add make bash ncurses git && export GOPROXY=https://goproxy.cn,direct && cd /filebrowser && make build-backend
 
-FROM alpine:latest
+FROM alpine:3.15
 RUN apk --update add ca-certificates \
                      mailcap \
                      curl
